@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block body %}
+
+<form action="/" method="post">
+
+    <h5><b>Results</b></h5>
+
+    <large>Your estimated BAC is <b>{{ bac }}%</b></large>
+
+    <div>You have to wait <b>{{ h }}</b> hours and <b>{{ m }}</b> minutes for it to be 0%.</div>
+
+    <div class="mt-3 mb-3">
+        <div><b>DISCLAIMER:</b></div>
+        <div>These calculations are only estimations.</div>
+        <div>They should not be used as a guide to decide to drive or not.</div>
+        <div>This app was developed only for educational purposes.</div>
+    </div>
+    <a href="/" class="btn btn-primary">Return</a>
+
+</form>
+
+{% endblock %}

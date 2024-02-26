@@ -1,0 +1,54 @@
+<!-- this JS code was provided by CS50.ai rubber duck-->
+<script>
+    window.onload = function() {
+      var now = new Date();
+      var hours = now.getHours();
+      var minutes = now.getMinutes();
+      if(hours < 10) hours = '0' + hours;
+      if(minutes < 10) minutes = '0' + minutes;
+      document.querySelector('input[type="time"]').value = hours + ':' + minutes;
+    };
+  </script>
+  {% extends "layout.html" %}
+  
+  {% block body %}
+  <form action="/" method="post">
+      <div class="form-group mb-2">
+          <label><b>Choose your gender:</b></label>
+          {% for gender in genders %}
+          <div class="form-check">
+              <input class="form-check-input" type="radio" name="gender" id="{{ gender.name }}" value="{{ gender.r }}" required>
+              <label class="form-check-label" id="{{ gender.name }}">{{ gender.name }}</label>
+          </div>
+          {% endfor %}
+      </div>
+      <div class="form-group mb-2">
+        <label><b>Enter your weight:</b></label>
+        <input style="width: 100px;" name="weight" class="form-control" type=number step="0.1" maxlength="3" autocomplete=off placeholder=Weight required>
+        {% for weight in weights %}
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="weight-unit" id="{{ weight.unit }}" value="{{ weight.coefficient }}" required>
+            <label class="form-check-label" id="{{ weight.unit }}">{{ weight.unit }}</label>
+          </div>
+          {% endfor %}
+      </div>
+      <div class="form-group mb-2">
+          <label for="time"><b>When did you start to drink?</b></label>
+        <div>
+          <input type="time" name="time" id="time">
+          <small>in the last 24 hours</small>
+        </div>
+     </div>
+      <div class="form-group mb-2">
+        <label><b>Drinks</b></label>
+        {% for drink in drinks %}
+            <div class="mb-1">
+              <input style="width: 50px;" name="{{ drink.name }}" id="{{ drink.name }}" type="number" autocomplete=off placeholder="0" min="0">
+              <label class="form-check-label" for="{{ drink.name }}" >{{ drink.name }}</label>
+            </div>
+        {% endfor %}
+      </div>
+    <button class="btn btn-primary" type="submit">Calculate</button>
+    <input class="btn btn-primary"type="reset">
+  </form>
+  {% endblock %}
